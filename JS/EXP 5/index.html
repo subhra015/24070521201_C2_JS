@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🛒 Smart Cart Calculator 2101</title>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="app" id="app">
+
+        <!-- HEADER -->
+        <header class="app-header">
+            <h1>
+                🛒 Smart Cart 2101
+                <span>v2</span>
+            </h1>
+            <div class="cart-badge">
+                🛍️ Items
+                <span class="count" id="itemCount">0</span>
+            </div>
+        </header>
+
+        <!-- DASHBOARD -->
+        <div class="dashboard">
+
+            <!-- PRODUCT GRID -->
+            <section>
+                <div class="product-grid" id="productGrid">
+                    <!-- products rendered by JS -->
+                </div>
+            </section>
+
+            <!-- CART SIDEBAR -->
+            <aside class="cart-sidebar" id="cartSidebar">
+
+                <h2>
+                    Your Cart
+                    <small id="cartItemCount">0 items</small>
+                </h2>
+
+                <div class="cart-items" id="cartItems">
+                    <!-- cart items rendered by JS -->
+                </div>
+
+                <!-- DISCOUNT SECTION -->
+                <div class="discount-section">
+
+                    <div class="coupon-row">
+                        <input
+                        type="text"
+                        id="couponInput"
+                        placeholder="Coupon code (SAVE10, SAVE20, NEWCUSTOMER)"
+                        maxlength="15"
+                        />
+                        <button id="applyCouponBtn">Apply</button>
+                    </div>
+
+                    <div class="discount-info" id="discountInfo">
+                        <!-- dynamic discount badges -->
+                    </div>
+                </div>
+
+                <!-- TOTAL SUMMARY -->
+                <div class="total-summary" id="totalSummary">
+                    <!-- totals rendered by JS -->
+                </div>
+
+                <button class="btn-checkout" id="checkoutBtn" disabled>
+                    Proceed to Checkout
+                </button>
+
+            </aside>
+        </div>
+    </div>
+
+    <!-- Link to external JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

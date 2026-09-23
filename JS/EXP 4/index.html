@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input {
+            padding: 10px;
+            width: 250px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Palindrome Checker</h2>
+    <h2>24070521201</h2>
+
+    <input 
+        type="text" 
+        id="textInput" 
+        placeholder="Enter a word or sentence"
+    >
+
+    <button onclick="checkInput()">Check</button>
+
+    <p id="output"></p>
+
+    <script>
+
+        // -----------------------------------------
+        // Global Scope variables
+        // -----------------------------------------
+        const appTitle = "Palindrome Checker";
+        let lastResult = "";
+
+
+        // -----------------------------------------
+        // 1. Function Declaration
+        // This function removes spaces and special characters
+        // and converts the string to lowercase
+        // -----------------------------------------
+        function normalizeText(value) {
+            // Function scope variable
+            const cleanedText = value.toLowerCase().replace(/[^a-z0-9]/g, "");
+            return cleanedText;
+        }
+
+
+        // -----------------------------------------
+        // 2. Function Expression
+        // This function reverses the given string
+        // -----------------------------------------
+        const reverseText = function (text) {
+            return text.split("").reverse().join("");
+        };
+
+
+        // -----------------------------------------
+        // 3. Arrow Function
+        // This function compares two strings
+        // -----------------------------------------
+        const compareText = (text1, text2) => text1 === text2;
+
+
+        // -----------------------------------------
+        // 4. Closure Example
+        // createPalindromeChecker() returns another function.
+        // The inner function remembers the checkCount variable
+        // even after the outer function has finished executing.
+        // -----------------------------------------
+        function createPalindromeChecker() {
+
+            // Private variable enclosed in closure
+            let checkCount = 0;
+
+            return function (userInput) {
+
+                checkCount++;
+
+                try {
+
+                    // Check if input is a string
+                    if (typeof userInput !== "string") {
+                        throw new Error("Input must be a string.");
+                    }
+
+                    // Check if input is empty
+                    if (userInput.trim() === "") {
+                        throw new Error("Input cannot be empty.");
+                    }
+
+                    // Clean the input
+                    const cleaned = normalizeText(userInput);
+
+                    // Check if cleaned input contains valid characters
+                    if (cleaned.length === 0) {
+                        throw new Error("Please enter letters or numbers only.");
+                    }
+
+                    // Reverse the cleaned input
+                    const reversed = reverseText(cleaned);
+
+                    // Compare original cleaned text with reversed text
+                    const isPalindrome = compareText(cleaned, reversed);
+
+                    if (isPalindrome) {
+                        lastResult = "Palindrome";
+                    } else {
+                        lastResult = "Not a Palindrome";
+                    }
+
+                    return {
+                        success: true,
+                        message: `"${userInput}" is a ${lastResult}.`,
+                        cleanedText: cleaned,
+                        reversedText: reversed,
+                        totalChecks: checkCount
+                    };
+
+                } catch (error) {
+
+                    lastResult = "Error";
+
+                    return {
+                        success: false,
+                        message: error.message,
+                        totalChecks: checkCount
+                    };
+
+                }
+
+            };
+        }
+
+
+        // Creating palindrome checker function
+        const checkPalindrome = createPalindromeChecker();
+
+
+        // -----------------------------------------
+        // Button click function
+        // -----------------------------------------
+        function checkInput() {
+
+            const inputElement = document.getElementById("textInput");
+            const outputElement = document.getElementById("output");
+
+            try {
+
+                const result = checkPalindrome(inputElement.value);
+
+                if (result.success) {
+                    outputElement.style.color = "green";
+                    outputElement.textContent =
+                        result.message +
+                        "\nCleaned Text: " + result.cleanedText +
+                        "\nReversed Text: " + result.reversedText +
+                        "\nTotal Checks Performed: " + result.totalChecks;
+                } else {
+                    outputElement.style.color = "red";
+                    outputElement.textContent =
+                        result.message +
+                        "\nTotal Checks Performed: " + result.totalChecks;
+                }
+
+                console.log(appTitle + " Result:", result);
+
+            } catch (unexpectedError) {
+
+                outputElement.style.color = "red";
+                outputElement.textContent =
+                    "Unexpected error: " + unexpectedError.message;
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

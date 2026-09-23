@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Location Tracker (100% Free)</title>
+    
+    <!-- 1. Free Map Library CSS (Leaflet) - NO API KEY NEEDED -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- 2. Our Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- Map Container -->
+    <div id="map"></div>
+
+    <!-- UI Control Panel -->
+    <div class="control-panel">
+        <p id="status-text">Click 'Start Tracking' to begin</p>
+        <div id="coords-display">Waiting for GPS...</div>
+        <button id="toggle-btn" class="btn btn-start">Start Tracking</button>
+    </div>
+
+    <!-- 3. Free Map Library JS (Leaflet) - NO API KEY NEEDED -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- 4. Our Custom JS -->
+    <script src="script.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,358 @@
+/* ============================================================
+   1. THEME TOKENS
+   Everything visual is driven by these variables — switching
+   themes only swaps the values on <html data-theme="...">.
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  --bg:          #eceef4;
+  --surface:     #ffffff;
+  --surface-alt: #f5f6fa;
+  --text:        #15171c;
+  --muted:       #5d6472;
+  --border:      #d9dde5;
+  --accent:      #3a5bfb;
+  --accent-soft: rgba(58, 91, 251, 0.12);
+  --ring:        rgba(58, 91, 251, 0.35);
+  --code-bg:     #f2f3f7;
+  --ok:          #0f7a46;
+  --warn:        #b45309;
+  --shadow:      0 18px 40px -20px rgba(18, 22, 45, 0.45);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg:          #0d0f14;
+  --surface:     #171a21;
+  --surface-alt: #1e222b;
+  --text:        #eceef4;
+  --muted:       #99a1b2;
+  --border:      #2c3240;
+  --accent:      #8199ff;
+  --accent-soft: rgba(129, 153, 255, 0.16);
+  --ring:        rgba(129, 153, 255, 0.4);
+  --code-bg:     #12151b;
+  --ok:          #4ade80;
+  --warn:        #fbbf24;
+  --shadow:      0 18px 40px -20px rgba(0, 0, 0, 0.85);
+}
+
+/* ============================================================
+   2. BASE
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 32px 20px 48px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  background-color: var(--bg);
+  color: var(--text);
+
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto,
+               Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* ============================================================
+   3. CARD
+   ============================================================ */
+.card {
+  width: 100%;
+  max-width: 620px;
+  padding: 28px;
+
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+
+  transition: background-color 0.25s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.card__header h1 {
+  margin: 0 0 6px;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.94rem;
+  color: var(--muted);
+}
+
+/* ============================================================
+   4. STEP GROUPS
+   ============================================================ */
+.group {
+  margin-top: 28px;
+}
+
+.group__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.step {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+
+  background-color: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 50%;
+
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+/* ============================================================
+   5. THEME BUTTONS
+   ============================================================ */
+.theme-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.theme-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+
+  font: inherit;
+  font-weight: 600;
+  color: var(--text);
+  text-align: left;
+
+  background-color: var(--surface-alt);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  cursor: pointer;
+
+  transition: border-color 0.2s ease,
+              background-color 0.2s ease,
+              transform 0.12s ease;
+}
+
+.theme-btn:hover {
+  border-color: var(--accent);
+}
+
+.theme-btn:active {
+  transform: scale(0.985);
+}
+
+.theme-btn:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.theme-btn.is-active {
+  border-color: var(--accent);
+  background-color: var(--accent-soft);
+}
+
+.swatch {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.swatch--light {
+  background: linear-gradient(135deg, #ffffff 0 60%, #dfe3ec 100%);
+}
+
+.swatch--dark {
+  background: linear-gradient(135deg, #2b3140 0 60%, #0d0f14 100%);
+}
+
+/* ============================================================
+   6. STORAGE RADIOS
+   ============================================================ */
+.storage-options {
+  display: grid;
+  gap: 10px;
+}
+
+.storage-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+
+  background-color: var(--surface-alt);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  cursor: pointer;
+
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.storage-option:hover {
+  border-color: var(--accent);
+}
+
+.storage-option:has(input:checked) {
+  border-color: var(--accent);
+  background-color: var(--accent-soft);
+}
+
+.storage-option:has(input:focus-visible) {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.storage-option input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 4px 0 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.storage-option__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.storage-option__name {
+  font-weight: 600;
+}
+
+.storage-option__desc {
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+/* ============================================================
+   7. STATUS BAR + RESET
+   ============================================================ */
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.status {
+  flex: 1;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.status[data-tone="ok"]   { color: var(--ok); }
+.status[data-tone="warn"] { color: var(--warn); }
+
+.btn-reset {
+  padding: 7px 16px;
+
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text);
+
+  background-color: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-reset:hover {
+  border-color: var(--accent);
+  background-color: var(--accent-soft);
+}
+
+.btn-reset:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   8. STORAGE DUMP
+   ============================================================ */
+.dump {
+  margin: 16px 0 0;
+  padding: 14px 16px;
+  max-height: 190px;
+  overflow: auto;
+
+  background-color: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--muted);
+  white-space: pre-wrap;
+  word-break: break-word;
+
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+/* ============================================================
+   9. RESPONSIVE + MOTION PREFERENCES
+   ============================================================ */
+@media (max-width: 460px) {
+  .card {
+    padding: 20px;
+  }
+
+  .theme-options {
+    grid-template-columns: 1fr;
+  }
+
+  .status-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-reset {
+    align-self: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}

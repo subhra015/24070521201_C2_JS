@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Theme Preferences — localStorage vs sessionStorage_24070521201</title>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!--
+    Loaded in <head> WITHOUT defer on purpose:
+    the script applies the saved theme to <html> before the body
+    renders, so you never see a flash of the wrong theme.
+  -->
+  <script src="script.js"></script>
+</head>
+<body>
+  <main class="card">
+    <header class="card__header">
+      <h1>Theme preferences(24070521201)</h1>
+      <p class="hint">
+        Pick a theme, then decide where the browser should remember.
+      </p>
+    </header>
+
+    <!-- ── Step 1: theme choice ─────────────────────────────── -->
+    <section class="group">
+      <h2 class="group__title">
+        <span class="step">1</span> Choose a theme
+      </h2>
+
+      <div class="theme-options" role="radiogroup" aria-label="Theme">
+        <button
+          type="button"
+          class="theme-btn"
+          data-theme-value="light"
+          role="radio"
+          aria-checked="false"
+        >
+          <span class="swatch swatch--light" aria-hidden="true"></span>
+          <span class="theme-btn__label">Light</span>
+        </button>
+
+        <button
+          type="button"
+          class="theme-btn"
+          data-theme-value="dark"
+          role="radio"
+          aria-checked="false"
+        >
+          <span class="swatch swatch--dark" aria-hidden="true"></span>
+          <span class="theme-btn__label">Dark</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ── Step 2: storage choice ───────────────────────────── -->
+    <section class="group">
+      <h2 class="group__title">
+        <span class="step">2</span> Where should we save it?
+      </h2>
+
+      <div class="storage-options" role="radiogroup" aria-label="Storage location">
+        <label class="storage-option">
+          <input type="radio" name="storage" value="local" />
+          <span class="storage-option__body">
+            <span class="storage-option__name">localStorage</span>
+            <span class="storage-option__desc">
+              Survives closing the browser (until cleared).
+            </span>
+          </span>
+        </label>
+
+        <label class="storage-option">
+          <input type="radio" name="storage" value="session" />
+          <span class="storage-option__body">
+            <span class="storage-option__name">sessionStorage</span>
+            <span class="storage-option__desc">
+              Only for this tab — gone when the tab closes.
+            </span>
+          </span>
+        </label>
+      </div>
+    </section>
+
+    <!-- ── Status + reset ───────────────────────────────────── -->
+    <div class="status-bar">
+      <p id="status" class="status" role="status" aria-live="polite">Ready.</p>
+      <button id="reset" class="btn-reset" type="button">Reset</button>
+    </div>
+
+    <!-- ── Live peek at what is actually stored ─────────────── -->
+    <pre id="dump" class="dump" aria-label="Current storage contents"></pre>
+  </main>
+</body>
+</html>

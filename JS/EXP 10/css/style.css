@@ -1,0 +1,234 @@
+/* ---------- Global reset & fonts ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+  background: #f4f7fc;
+  color: #1e293b;
+  line-height: 1.5;
+  padding: 2rem 1rem;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.1);
+  padding: 2rem 2rem 2.5rem;
+}
+
+/* ---------- Header ---------- */
+.page-header {
+  margin-bottom: 1.8rem;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 1rem;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: #475569;
+  margin-top: 0.35rem;
+}
+
+.subtitle code {
+  background: #eef2ff;
+  padding: 0.2rem 0.45rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #4338ca;
+  font-weight: 500;
+}
+
+.subtitle strong {
+  color: #0f172a;
+}
+
+/* ---------- Buttons ---------- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  border: none;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: #3b82f6;
+  color: #ffffff;
+}
+.btn-primary:hover {
+  background: #2563eb;
+  box-shadow: 0 8px 16px -6px #3b82f6;
+}
+
+.btn-secondary {
+  background: #8b5cf6;
+  color: #ffffff;
+}
+.btn-secondary:hover {
+  background: #7c3aed;
+  box-shadow: 0 8px 16px -6px #8b5cf6;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #475569;
+  border: 1.5px solid #cbd5e1;
+  box-shadow: none;
+}
+.btn-ghost:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+}
+
+/* ---------- Status message ---------- */
+.status {
+  font-size: 0.95rem;
+  padding: 0.7rem 1.2rem;
+  background: #f8fafc;
+  border-left: 5px solid #94a3b8;
+  border-radius: 10px;
+  margin-bottom: 1.8rem;
+  color: #334155;
+  min-height: 3.2rem;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.status.success {
+  background: #f0fdf4;
+  border-left-color: #22c55e;
+  color: #166534;
+}
+
+.status.error {
+  background: #fef2f2;
+  border-left-color: #ef4444;
+  color: #991b1b;
+}
+
+.status.loading {
+  background: #eff6ff;
+  border-left-color: #3b82f6;
+  color: #1e40af;
+}
+
+/* ---------- Table ---------- */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  min-width: 750px;
+}
+
+thead {
+  background: #f1f5f9;
+  border-bottom: 2px solid #cbd5e1;
+}
+
+th {
+  text-align: left;
+  padding: 1rem 1.2rem;
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+td {
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid #e9eef3;
+  color: #1e293b;
+  vertical-align: middle;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* Empty / placeholder row */
+.empty {
+  text-align: center;
+  color: #94a3b8;
+  font-style: italic;
+  padding: 2.5rem 1rem;
+}
+
+/* Pass / Fail badges */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.85rem;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.badge-pass {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.badge-fail {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 600px) {
+  .container {
+    padding: 1.5rem 1rem;
+  }
+  .page-header h1 {
+    font-size: 1.6rem;
+  }
+  .btn {
+    padding: 0.55rem 1.1rem;
+    font-size: 0.85rem;
+  }
+  th, td {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.85rem;
+  }
+}

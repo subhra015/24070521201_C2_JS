@@ -1,0 +1,162 @@
+<!-- ============================= index.html ============================= -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IronCore Gym — Admission Form</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>IRON<span>CORE</span> GYM</h1>
+  <p>Membership admission form — every field is validated live as you type.</p>
+</header>
+
+<div class="layout">
+
+  <!-- ==================== FORM ==================== -->
+  <main class="card">
+    <form id="gymForm" novalidate autocomplete="on">
+
+      <h2 class="sec">1 · Personal Details</h2>
+      <div class="grid2">
+        <div class="field">
+          <label for="fullName">Full Name <span class="req">*</span></label>
+          <input type="text" id="fullName" name="fullName" placeholder="e.g. Rahul Sharma" autocomplete="name">
+          <small class="msg" aria-live="polite"></small>
+        </div>
+
+        <div class="field">
+          <label for="email">Email Address <span class="req">*</span></label>
+          <input type="email" id="email" name="email" placeholder="you@mail.com" autocomplete="email">
+          <small class="msg" aria-live="polite"></small>
+        </div>
+
+        <div class="field">
+          <label for="phone">Mobile Number <span class="req">*</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="10-digit number" inputmode="numeric" maxlength="14">
+          <small class="msg" aria-live="polite"></small>
+        </div>
+
+        <div class="field">
+          <label for="age">Age (years) <span class="req">*</span></label>
+          <input type="number" id="age" name="age" placeholder="18 – 90" min="12" max="90" step="1">
+          <small class="msg" aria-live="polite"></small>
+        </div>
+
+        <div class="field">
+          <label for="gender">Gender <span class="req">*</span></label>
+          <select id="gender" name="gender">
+            <option value="">Select…</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other / Prefer not to say</option>
+          </select>
+          <small class="msg" aria-live="polite"></small>
+        </div>
+
+        <div class="field">
+          <label for="plan">Membership Plan <span class="req">*</span></label>
+          <select id="plan" name="plan">
+            <option value="">Select…</option>
+            <option value="Monthly — ₹1,200">Monthly — ₹1,200</option>
+            <option value="Quarterly — ₹3,200">Quarterly — ₹3,200</option>
+            <option value="Half-Yearly — ₹5,800">Half-Yearly — ₹5,800</option>
+            <option value="Annual — ₹9,999">Annual — ₹9,999</option>
+          </select>
+          <small class="msg" aria-live="polite"></small>
+        </div>
+      </div>
+
+      <h2 class="sec">2 · Body Metrics (drives live BMI)</h2>
+      <div class="grid2">
+        <div class="field">
+          <label for="height">Height (cm) <span class="req">*</span></label>
+          <input type="number" id="height" name="height" placeholder="e.g. 175" min="90" max="250" step="0.1">
+          <small class="msg" aria-live="polite"></small>
+        </div>
+
+        <div class="field">
+          <label for="weight">Weight (kg) <span class="req">*</span></label>
+          <input type="number" id="weight" name="weight" placeholder="e.g. 72" min="25" max="300" step="0.1">
+          <small class="msg" aria-live="polite"></small>
+        </div>
+      </div>
+
+      <h2 class="sec">3 · Emergency Contact</h2>
+      <div class="grid2">
+        <div class="field">
+          <label for="emergencyName">Contact Name <span class="req">*</span></label>
+          <input type="text" id="emergencyName" name="emergencyName" placeholder="e.g. Priya Sharma">
+          <small class="msg" aria-live="polite"></small>
+        </div>
+        <div class="field">
+          <label for="emergencyPhone">Contact Number <span class="req">*</span></label>
+          <input type="tel" id="emergencyPhone" name="emergencyPhone" placeholder="10-digit number" inputmode="numeric" maxlength="14">
+          <small class="msg" aria-live="polite"></small>
+        </div>
+      </div>
+
+      <div class="field check">
+        <input type="checkbox" id="terms" name="terms">
+        <label for="terms">I confirm the information above is accurate and I accept the gym's terms, safety rules and cancellation policy. <span class="req">*</span></label>
+        <small class="msg" aria-live="polite"></small>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn-primary">Submit Admission</button>
+        <button type="reset" class="btn-ghost">Reset Form</button>
+      </div>
+
+      <div id="result" class="result" hidden></div>
+    </form>
+  </main>
+
+  <!-- ==================== BMI PANEL ==================== -->
+  <aside class="card panel" id="bmiPanel">
+    <h2>Live BMI &amp; Body Type</h2>
+    <p class="sub">Calculated instantly from height, weight, age &amp; gender</p>
+
+    <div class="empty" id="bmiEmpty">
+      <span class="big">⚖️</span>
+      Enter a valid height and weight<br>to see your BMI, body type and daily needs.
+    </div>
+
+    <div id="bmiBody" hidden>
+      <div class="bmi-value">
+        <span id="bmiNumber">0.0</span><small>kg/m²</small>
+      </div>
+      <div class="badge" id="bmiBadge">—</div>
+
+      <div class="meter"><div class="pin" id="meterPin"></div></div>
+      <div class="meter-labels">
+        <span>Under</span><span>Normal</span><span>Over</span><span>Obese</span>
+      </div>
+
+      <dl class="stats">
+        <div><dt>Body Type</dt><dd id="bodyType">—</dd></div>
+        <div><dt>Frame Trend</dt><dd id="frameTrend" class="small">—</dd></div>
+        <div><dt>Ideal Weight</dt><dd id="idealWeight" class="small">—</dd></div>
+        <div><dt>BMR (rest)</dt><dd id="bmr" class="small">—</dd></div>
+        <div><dt>Maintenance</dt><dd id="tdee" class="small">—</dd></div>
+        <div><dt>BMI Prime</dt><dd id="bmiPrime" class="small">—</dd></div>
+      </dl>
+
+      <p class="note" id="bodyNote"></p>
+      <p class="disclaimer">
+        BMI is a population-level screening tool, not a diagnosis. Muscular athletes may
+        register as "overweight". Body type here is inferred from BMI range (somatotype trend),
+        not from skinfold or DEXA measurement.
+      </p>
+    </div>
+  </aside>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIT Nagpur - Department & Student Portal</title>
+    
+    <style>
+        body {
+            background-color: #f5f8ff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1a5cff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        header h1 { margin: 0; font-size: 28px; }
+        header p { margin: 5px 0 0; font-size: 16px; }
+        
+        .page-section {
+            max-width: 600px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        
+        /* INLINE JS TARGET */
+        .page-section h2 {
+            color: #1a5cff;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .page-section h2:hover { color: #0d3fb0; }
+        
+        .page-section p {
+            color: #444;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        /* Button styled as a link */
+        a.btn {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #1a5cff;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        a.btn:hover { background-color: #0d3fb0; }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 90%;
+        }
+        td, th {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            font-size: 15px;
+        }
+        th {
+            background-color: #eef3ff;
+            color: #1a5cff;
+        }
+        tr:nth-child(even) { background-color: #f9fbff; }
+        
+        footer {
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+            margin: 30px 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SIT Nagpur</h1>
+        <p>Department of Computer Science</p>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- PAGE 1: DEPARTMENT HOME                    -->
+    <!-- ========================================== -->
+    <div id="department-page" class="page-section">
+        <!-- INLINE JS: Click triggers an alert -->
+        <h2 onclick="alert('Inline JS: Department title clicked!')">
+            Welcome to our Department Page
+        </h2>
+        <p>Click the heading above to trigger an Inline JS alert. Use the button below to view student information.</p>
+        
+        <!-- Link to "navigate" to the student page -->
+        <a class="btn" href="#" onclick="showStudentPage(); return false;">View Student Information</a>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- PAGE 2: STUDENT INFORMATION                -->
+    <!-- (Hidden by default using inline CSS)       -->
+    <!-- ========================================== -->
+    <div id="student-page" class="page-section" style="display: none;">
+        <h2>Student Information</h2>
+        
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Roll No.</th>
+                <th>Branch</th>
+            </tr>
+            <tr>
+                <td>Subhrajeet</td>
+                <td>1201</td>
+                <td>Computer Science</td>
+            </tr>
+        </table>
+
+        <!-- Link to "navigate" back to the department page -->
+        <a class="btn" href="#" onclick="showDepartmentPage(); return false;">&larr; Back to Department Home</a>
+    </div>
+
+    <footer>Made by a Student &middot; SIT Nagpur</footer>
+
+    <!-- ========================================== -->
+    <!-- INTERNAL JAVASCRIPT                        -->
+    <!-- ========================================== -->
+    <script>
+        // 1. Welcome Alert Box (Main Case Study Requirement)
+        // This runs as soon as the page loads.
+        window.onload = function() {
+            alert("Welcome to SIT Nagpur");
+        };
+
+        console.log("Internal JS: Single-file portal loaded successfully.");
+
+        // 2. Navigation Functions to simulate page linking in a single file
+        function showStudentPage() {
+            document.getElementById('department-page').style.display = 'none';
+            document.getElementById('student-page').style.display = 'block';
+            window.scrollTo(0, 0); // Scrolls to top of page
+        }
+
+        function showDepartmentPage() {
+            document.getElementById('student-page').style.display = 'none';
+            document.getElementById('department-page').style.display = 'block';
+            window.scrollTo(0, 0); // Scrolls to top of page
+        }
+    </script>
+
+</body>
+</html>

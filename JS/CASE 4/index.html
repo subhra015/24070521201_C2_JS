@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATM PIN Verification With Alert</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f5f7;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+        }
+
+        .atm-container {
+            background-color: #ffffff;
+            width: 400px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        h2 {
+            color: #1f2937;
+        }
+
+        input {
+            padding: 10px;
+            width: 80%;
+            font-size: 20px;
+            text-align: center;
+            letter-spacing: 5px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 10px 25px;
+            font-size: 16px;
+            background-color: #1d4ed8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1e40af;
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+
+        .normal {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+
+        .scope-info {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="atm-container">
+        <h2>ATM PIN Verification</h2>
+        <p>Enter your PIN to check whether it is a palindrome.</p>
+
+        <input 
+            type="text" 
+            id="pinInput" 
+            maxlength="6" 
+            placeholder="Enter PIN"
+            inputmode="numeric"
+        />
+
+        <br />
+
+        <button id="verifyBtn">Verify PIN</button>
+
+        <p id="result"></p>
+
+        <p id="scopeInfo" class="scope-info"></p>
+    </div>
+
+    <script>
+        /*
+            GLOBAL SCOPE
+            These variables are available everywhere in this script.
+        */
+
+        const bankName = "Secure Bank";
+        let verificationCount = 0;
+
+
+        /*
+            FUNCTION DECLARATION
+            Function to reverse the entered PIN.
+        */
+
+        function reversePIN(pin) {
+            let reversedPIN = "";
+
+            for (let i = pin.length - 1; i >= 0; i--) {
+                reversedPIN += pin[i];
+            }
+
+            return reversedPIN;
+        }
+
+
+        /*
+            FUNCTION EXPRESSION
+            Function to check whether the PIN is a palindrome.
+        */
+
+        const isPalindrome = function (pin) {
+            const reversedValue = reversePIN(pin);
+            return pin === reversedValue;
+        };
+
+
+        /*
+            ARROW FUNCTION
+            Function to generate security message.
+        */
+
+        const generateSecurityMessage = (pinStatus) => {
+            let message;
+
+            if (pinStatus) {
+                const securityCode = "PAL-SEC-101";
+                message = `${bankName}: Special security message activated. Your PIN is a palindrome. Security Code: ${securityCode}`;
+            } else {
+                const securityCode = "REG-SEC-202";
+                message = `${bankName}: Your PIN is not a palindrome. Standard security applied. Security Code: ${securityCode}`;
+            }
+
+            return message;
+        };
+
+
+        /*
+            MAIN VERIFICATION FUNCTION
+        */
+
+        function verifyPIN() {
+            verificationCount++;
+
+            const pinInput = document.getElementById("pinInput");
+            const result = document.getElementById("result");
+            const scopeInfo = document.getElementById("scopeInfo");
+
+            let pin = pinInput.value.trim();
+
+            // Alert if PIN is empty
+            if (pin === "") {
+                result.className = "error";
+                result.textContent = "Please enter a PIN.";
+                scopeInfo.textContent = "";
+
+                alert("Please enter a PIN.");
+                return;
+            }
+
+            // Alert if PIN contains non-digit characters
+            if (!/^\d+$/.test(pin)) {
+                result.className = "error";
+                result.textContent = "PIN must contain digits only.";
+                scopeInfo.textContent = "";
+
+                alert("PIN must contain digits only.");
+                return;
+            }
+
+            // Check palindrome
+            const palindromeStatus = isPalindrome(pin);
+
+            // Generate message
+            const message = generateSecurityMessage(palindromeStatus);
+
+            // Show result on webpage
+            result.textContent = message;
+
+            if (palindromeStatus) {
+                result.className = "success";
+            } else {
+                result.className = "normal";
+            }
+
+            // SHOW ALERT MESSAGE HERE
+            alert(message);
+
+            // Scope demonstration
+            if (palindromeStatus) {
+                let scopeMessage = "Block-scoped variable inside if block.";
+
+                scopeInfo.textContent = `
+                    Global Bank Name: ${bankName} | 
+                    Total Verifications: ${verificationCount} | 
+                    ${scopeMessage} | 
+                    Reversed PIN: ${reversePIN(pin)}
+                `;
+            } else {
+                let scopeMessage = "Block-scoped variable inside else block.";
+
+                scopeInfo.textContent = `
+                    Global Bank Name: ${bankName} | 
+                    Total Verifications: ${verificationCount} | 
+                    ${scopeMessage} | 
+                    Reversed PIN: ${reversePIN(pin)}
+                `;
+            }
+
+            console.log("Entered PIN:", pin);
+            console.log("Reversed PIN:", reversePIN(pin));
+            console.log("Palindrome Status:", palindromeStatus);
+        }
+
+
+        /*
+            BUTTON CLICK EVENT
+        */
+
+        document.getElementById("verifyBtn").addEventListener("click", () => {
+            verifyPIN();
+        });
+    </script>
+
+</body>
+</html>

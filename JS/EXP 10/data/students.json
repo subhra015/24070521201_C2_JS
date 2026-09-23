@@ -1,0 +1,10 @@
+[
+  { "id": 1, "name": "Aarav Sharma",    "course": "Computer Science", "semester": 4, "marks": 87, "city": "Mumbai" },
+  { "id": 2, "name": "Diya Patel",      "course": "Information Tech", "semester": 3, "marks": 92, "city": "Ahmedabad" },
+  { "id": 3, "name": "Vihaan Reddy",    "course": "Electronics",      "semester": 5, "marks": 38, "city": "Hyderabad" },
+  { "id": 4, "name": "Ananya Iyer",     "course": "Computer Science", "semester": 6, "marks": 75, "city": "Chennai" },
+  { "id": 5, "name": "Kabir Singh",     "course": "Mechanical",       "semester": 2, "marks": 45, "city": "Delhi" },
+  { "id": 6, "name": "Ishita Gupta",    "course": "Information Tech", "semester": 4, "marks": 66, "city": "Pune" },
+  { "id": 7, "name": "Rudra Nair",      "course": "Civil",            "semester": 3, "marks": 29, "city": "Kochi" },
+  { "id": 8, "name": "Saanvi Joshi",    "course": "Computer Science", "semester": 5, "marks": 91, "city": "Bengaluru" }
+]

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Shopping Website</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background-color: #f7f7f7;
+        }
+
+        /* HTML5 header tag */
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        header input {
+            padding: 8px;
+            width: 60%;
+        }
+
+        header button {
+            padding: 8px 12px;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* HTML5 nav tag */
+        nav {
+            background-color: #555;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: yellow;
+        }
+
+        /* HTML5 main tag */
+        main {
+            width: 90%;
+            margin: auto;
+        }
+
+        /* HTML5 section tag */
+        section h2 {
+            margin-top: 20px;
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        /* HTML5 article tag */
+        article {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 200px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        figure {
+            margin: 0;
+        }
+
+        .product-img {
+            font-size: 50px;
+            padding: 20px;
+        }
+
+        figcaption {
+            font-weight: bold;
+        }
+
+        article button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 8px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        article button:hover {
+            background-color: #555;
+        }
+
+        /* HTML5 aside tag */
+        aside {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        aside ul {
+            padding-left: 20px;
+        }
+
+        /* HTML5 footer tag */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HTML5 header tag -->
+    <header>
+        <h1>Simple Shop</h1>
+        <input type="search" placeholder="Search products">
+        <button onclick="alert('Search clicked')">Search</button>
+    </header>
+
+    <!-- HTML5 nav tag -->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HTML5 main tag -->
+    <main>
+
+        <!-- HTML5 section tag -->
+        <section id="products">
+            <h2>Products</h2>
+
+            <div class="products">
+
+                <!-- HTML5 article tag -->
+                <article>
+                    <!-- HTML5 figure tag -->
+                    <figure>
+                        <div class="product-img">🎧</div>
+                        <figcaption>Headphones</figcaption>
+                    </figure>
+                    <p>Price: $20</p>
+                    <button onclick="addToCart('Headphones')">Add to Cart</button>
+                </article>
+
+                <article>
+                    <figure>
+                        <div class="product-img">⌚</div>
+                        <figcaption>Smart Watch</figcaption>
+                    </figure>
+                    <p>Price: $50</p>
+                    <button onclick="addToCart('Smart Watch')">Add to Cart</button>
+                </article>
+
+                <article>
+                    <figure>
+                        <div class="product-img">👟</div>
+                        <figcaption>Shoes</figcaption>
+                    </figure>
+                    <p>Price: $30</p>
+                    <button onclick="addToCart('Shoes')">Add to Cart</button>
+                </article>
+
+                <article>
+                    <figure>
+                        <div class="product-img">🎒</div>
+                        <figcaption>Bag</figcaption>
+                    </figure>
+                    <p>Price: $25</p>
+                    <button onclick="addToCart('Bag')">Add to Cart</button>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- HTML5 aside tag -->
+        <aside id="categories">
+            <h3>Categories</h3>
+            <ul>
+                <li>Electronics</li>
+                <li>Fashion</li>
+                <li>Home Products</li>
+                <li>Accessories</li>
+            </ul>
+        </aside>
+
+    </main>
+
+    <!-- HTML5 footer tag -->
+    <footer id="contact">
+        <p>&copy; 2026 Simple Shop</p>
+    </footer>
+
+    <script>
+        function addToCart(productName) {
+            alert(productName + " added to cart");
+        }
+    </script>
+
+</body>
+</html>

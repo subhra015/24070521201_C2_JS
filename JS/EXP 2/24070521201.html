@@ -1,0 +1,66 @@
+<DOCTYPE html>
+  <html lang="en">
+    <head>
+      <title>Billing Calculator</title>
+    </head>
+    <body>
+      <h2>Billing Calculator</h2>
+
+      <script>
+        const GST = 0.18; // GST rate in percentage
+
+        var customerName = prompt("Please enter your name:");
+        var productName = prompt("Please enter the product name:");
+
+        var quantity = Number(prompt("Enter the quantity :"));
+
+        let price = Number(prompt("Enter the price :"));
+
+        //calculation
+        let totalAmount = quantity * price;
+        let gstAmount = totalAmount * GST;
+        let FinalBill = totalAmount + gstAmount;
+
+        //object
+        const billDetails = {
+          customerName: customerName,
+          productName: productName,
+          quantity: quantity,
+          price: price,
+          totalAmount: totalAmount,
+          gstAmount: gstAmount,
+          FinalBill: FinalBill,
+        };
+
+        //destructuring
+        const {
+          customerName: name,
+          productName: product,
+          quantity: qty,
+          price: unitPrice,
+          totalAmount: total,
+          gstAmount: gst,
+          FinalBill: finalBill,
+        } = billDetails;
+
+        //output
+        document.write("<h3>Bill Details</h3>");
+        document.write("<p><strong>Customer Name:</strong> " + name + "</p>");
+        document.write("<p><strong>Product Name:</strong> " + product + "</p>");
+        document.write("<p><strong>Quantity:</strong> " + qty + "</p>");
+        document.write(
+          "<p><strong>Unit Price:</strong> $" + unitPrice.toFixed(2) + "</p>",
+        );
+        document.write(
+          "<p><strong>Total Amount:</strong> $" + total.toFixed(2) + "</p>",
+        );
+        document.write(
+          "<p><strong>GST Amount:</strong> $" + gst.toFixed(2) + "</p>",
+        );
+        document.write(
+          "<p><strong>Final Bill: $" + finalBill.toFixed(2) + "</strong></p>",
+        );
+      </script>
+    </body>
+  </html></DOCTYPE
+>

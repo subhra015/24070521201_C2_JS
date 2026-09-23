@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grading System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grading-app">
+        <div class="app-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c0 1.66 4 3 9 3s9-1.34 9-3v-5"/>
+            </svg>
+            Student Grading System
+        </div>
+
+        <div class="form-section">
+            <label for="studentName">Student Name</label>
+            <input type="text" id="studentName" placeholder="Enter full name" autocomplete="off">
+            <div class="error-msg" id="errName">Name must be at least 2 characters.</div>
+        </div>
+
+        <div class="form-section">
+            <label for="studentId">Student ID</label>
+            <input type="text" id="studentId" placeholder="e.g. STU-2026-001" autocomplete="off">
+            <div class="error-msg" id="errId">ID must be at least 4 characters.</div>
+        </div>
+
+        <div class="marks-grid">
+            <div class="form-section">
+                <label for="math">Mathematics</label>
+                <input type="number" id="math" placeholder="0-100" min="0" max="100">
+                <div class="error-msg" id="errMath">Enter a valid mark (0-100).</div>
+            </div>
+            <div class="form-section">
+                <label for="science">Science</label>
+                <input type="number" id="science" placeholder="0-100" min="0" max="100">
+                <div class="error-msg" id="errScience">Enter a valid mark (0-100).</div>
+            </div>
+            <div class="form-section">
+                <label for="english">English</label>
+                <input type="number" id="english" placeholder="0-100" min="0" max="100">
+                <div class="error-msg" id="errEnglish">Enter a valid mark (0-100).</div>
+            </div>
+            <div class="form-section">
+                <label for="history">History</label>
+                <input type="number" id="history" placeholder="0-100" min="0" max="100">
+                <div class="error-msg" id="errHistory">Enter a valid mark (0-100).</div>
+            </div>
+        </div>
+
+        <button class="btn-primary" id="calcBtn" onclick="calculateGrade()">Calculate Grade</button>
+
+        <div class="result-card" id="resultCard">
+            <div class="result-header">
+                <div class="grade-badge" id="gradeBadge">A</div>
+                <div class="result-info">
+                    <h3 id="resName">Student Name</h3>
+                    <p id="resId">ID: STU-001</p>
+                </div>
+            </div>
+
+            <div class="score-bar-container">
+                <div class="score-bar-label">
+                    <span>Average Score</span>
+                    <span id="avgScoreText">85%</span>
+                </div>
+                <div class="score-bar-track">
+                    <div class="score-bar-fill" id="scoreBarFill"></div>
+                </div>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-box">
+                    <div class="stat-val" id="statTotal">340</div>
+                    <div class="stat-label">Total Marks</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-val" id="statAvg">85</div>
+                    <div class="stat-label">Average</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-val" id="statBest">98</div>
+                    <div class="stat-label">Highest</div>
+                </div>
+            </div>
+
+            <div class="grade-scale">
+                <div class="scale-item scale-A" id="scaleA">A<br><small>90-100</small></div>
+                <div class="scale-item scale-B" id="scaleB">B<br><small>80-89</small></div>
+                <div class="scale-item scale-C" id="scaleC">C<br><small>70-79</small></div>
+                <div class="scale-item scale-D" id="scaleD">D<br><small>60-69</small></div>
+                <div class="scale-item scale-F" id="scaleF">F<br><small>&lt;60</small></div>
+            </div>
+        </div>
+
+        <div class="history-section" id="historySection">
+            <div class="section-header">
+                <span>Grade History</span>
+                <button class="clear-btn" onclick="clearHistory()">Clear All</button>
+            </div>
+            <table class="history-table" id="historyTable">
+                <thead>
+                    <tr><th>Name</th><th>Avg</th><th>Grade</th><th>Status</th></tr>
+                </thead>
+                <tbody id="historyBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
