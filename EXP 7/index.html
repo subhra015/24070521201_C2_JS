@@ -1,33 +1,333 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Location Tracker (100% Free)</title>
-    
-    <!-- 1. Free Map Library CSS (Leaflet) - NO API KEY NEEDED -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
-    <!-- 2. Our Custom CSS -->
-    <link rel="stylesheet" href="style.css" />
+    <title>To-Do List</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f6fb;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h2 {
+            color: #1a5cff;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #555;
+            font-size: 16px;
+            font-weight: normal;
+            margin-bottom: 25px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 15px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            width: 230px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #1a5cff;
+            box-shadow: 0 0 4px rgba(26, 92, 255, 0.25);
+        }
+
+        /* Add button */
+        button {
+            padding: 9px 16px;
+            font-size: 15px;
+            background-color: #1a5cff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        button:hover {
+            background-color: #0d3fb0;
+        }
+
+        /* List */
+        ul {
+            list-style: none;
+            padding: 0;
+            max-width: 420px;
+            margin: 25px auto 0;
+        }
+
+        /* Individual task */
+        li {
+            background-color: white;
+            border: 1px solid #e0e4ea;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-top: 10px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+
+            transition: 0.2s;
+        }
+
+        /* Hover effect */
+        li:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Checkbox */
+        li input[type="checkbox"] {
+            width: 17px;
+            height: 17px;
+            margin: 0 10px 0 0;
+            cursor: pointer;
+            accent-color: #1a5cff;
+        }
+
+        /* Task text */
+        li span {
+            flex: 1;
+            text-align: left;
+
+            font-family: "Segoe UI", sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: #263238;
+
+            padding-left: 5px;
+
+            transition: 0.2s;
+        }
+
+        /* Completed task */
+        li span.completed {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        /* Edit and Delete buttons */
+        li button {
+            padding: 6px 11px;
+            font-size: 13px;
+            margin-left: 6px;
+            border-radius: 5px;
+        }
+
+        /* Edit button */
+        li button:first-of-type {
+            background-color: #f59e0b;
+        }
+
+        li button:first-of-type:hover {
+            background-color: #d97706;
+        }
+
+        /* Delete button */
+        li button:last-of-type {
+            background-color: #ef4444;
+        }
+
+        li button:last-of-type:hover {
+            background-color: #dc2626;
+        }
+
+        /* Count */
+        #count {
+            margin-top: 20px;
+            font-size: 15px;
+            color: #555;
+            font-weight: 500;
+        }
+
+    </style>
 </head>
+
 <body>
 
-    <!-- Map Container -->
-    <div id="map"></div>
+    <h2>My To-Do List</h2>
 
-    <!-- UI Control Panel -->
-    <div class="control-panel">
-        <p id="status-text">Click 'Start Tracking' to begin</p>
-        <div id="coords-display">Waiting for GPS...</div>
-        <button id="toggle-btn" class="btn btn-start">Start Tracking</button>
-    </div>
+    <h3>Subhrajeet Ganguly 24070521201</h3>
 
-    <!-- 3. Free Map Library JS (Leaflet) - NO API KEY NEEDED -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
-    <!-- 4. Our Custom JS -->
-    <script src="script.js"></script>
-    
+    <input
+        type="text"
+        id="taskInput"
+        placeholder="Enter a task"
+    >
+
+    <button onclick="addTask()">Add</button>
+
+    <ul id="taskList"></ul>
+
+    <p id="count">Total items: 0</p>
+
+
+    <script>
+
+        // Update the count of items using DOM
+        function updateCount() {
+
+            var items =
+                document.getElementById("taskList")
+                .children.length;
+
+            document.getElementById("count").innerHTML =
+                "Total items: " + items;
+        }
+
+
+        // Add a new task
+        function addTask() {
+
+            var input =
+                document.getElementById("taskInput");
+
+            var taskText =
+                input.value;
+
+
+            if (taskText == "") {
+
+                alert("Please enter a task!");
+
+                return;
+            }
+
+
+            // Create list item
+            var li =
+                document.createElement("li");
+
+
+            // Create checkbox
+            var checkbox =
+                document.createElement("input");
+
+            checkbox.type = "checkbox";
+
+
+            // Create span to hold task text
+            var span =
+                document.createElement("span");
+
+            span.innerHTML =
+                taskText;
+
+
+            // When checkbox is clicked
+            checkbox.onclick = function () {
+
+                if (checkbox.checked) {
+
+                    // Add completed class
+                    span.classList.add("completed");
+
+                }
+
+                else {
+
+                    // Remove completed class
+                    span.classList.remove("completed");
+
+                }
+
+            };
+
+
+            // Create Edit button
+            var editBtn =
+                document.createElement("button");
+
+            editBtn.innerHTML =
+                "Edit";
+
+            editBtn.onclick = function () {
+
+                editTask(span);
+
+            };
+
+
+            // Create Delete button
+            var deleteBtn =
+                document.createElement("button");
+
+            deleteBtn.innerHTML =
+                "Delete";
+
+            deleteBtn.onclick = function () {
+
+                deleteTask(li);
+
+            };
+
+
+            // Append everything to list item
+
+            li.appendChild(checkbox);
+
+            li.appendChild(span);
+
+            li.appendChild(editBtn);
+
+            li.appendChild(deleteBtn);
+
+
+            // Add list item to the list
+
+            document
+                .getElementById("taskList")
+                .appendChild(li);
+
+
+            input.value = "";
+
+            updateCount();
+
+        }
+
+
+        // Edit a task
+        function editTask(span) {
+
+            var newText =
+                prompt(
+                    "Edit task:",
+                    span.innerHTML
+                );
+
+
+            if (
+                newText !== null &&
+                newText !== ""
+            ) {
+
+                span.innerHTML =
+                    newText;
+            }
+
+        }
+
+
+        // Delete a task
+        function deleteTask(li) {
+
+            li.remove();
+
+            updateCount();
+
+        }
+
+    </script>
+
 </body>
 </html>
